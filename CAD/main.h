@@ -18,6 +18,10 @@ typedef unsigned int  uint32_t;
 typedef char char8_t;
 typedef unsigned char uchar8_t;
 typedef double double64_t;
-typedef unsigned double udouble64_t;
+//Constants
+#define PALLETX 960
+#define PALLETY 20
+#define DASHBOARDX 0
+#define DASHBOARDY 20
 //Belowes
 #endif // !MAIN_H
