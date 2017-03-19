@@ -31,6 +31,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 int32_t IO_Init() {
 	beginPaint();
 	ACL_Image Pallet, DashBoard;
+
 	loadImage(".//pallet.bmp",&Pallet);
 	putImage(&Pallet, PALLETX, PALLETY);
 	loadImage(".//DashBoard.bmp", &DashBoard);
