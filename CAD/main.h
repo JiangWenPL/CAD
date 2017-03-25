@@ -28,6 +28,11 @@ typedef double double64_t;
 #define RECTANGLE_X_RIGHT 75
 #define RECTANGLE_Y_UP 125
 #define RECTANGLE_Y_DOWN 145
+#define ERASE_X_LEFT 0
+#define ERASE_X_RIGHT 30
+#define ERASE_Y_UP 55
+#define ERASE_Y_DOWN 85
+//Color Constans
 #define AA_BUTTON_X_LEFT 965
 #define AA_BUTTON_X_RIGHT 984
 #define AA_BUTTON_Y_DOWN 52
