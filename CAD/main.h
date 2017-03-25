@@ -32,6 +32,8 @@ typedef double double64_t;
 #define ERASE_X_RIGHT 30
 #define ERASE_Y_UP 55
 #define ERASE_Y_DOWN 85
+#define PANEL_BUNDARY_LEFT 75
+#define PANEL_BUNDARY_RIGHT 960
 //Color Constans
 #define AA_BUTTON_X_LEFT 965
 #define AA_BUTTON_X_RIGHT 984
