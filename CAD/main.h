@@ -24,5 +24,10 @@ typedef double double64_t;
 #define PALLETY 20
 #define DASHBOARDX 0
 #define DASHBOARDY 20
+#define RECTANGLE_X_LEFT 45
+#define RECTANGLE_X_RIGHT 75
+#define RECTANGLE_Y_UP 125
+#define RECTANGLE_Y_DOWN 145
+
 //Belowes
 #endif // !MAIN_H
