@@ -64,8 +64,8 @@ int Setup() {
 }
 TimerEventCallback TimerEvent(int timerID) { ; }
 CharEventCallback CharEvent(char c) {
-	//static String Words = NULL;
 	static int32_t Pre_Pos_x, Pre_Pos_y;
+	//To read the num from keyborad.
 	if (m_lMode != WORDS_MODE) {
 		static int32_t flag_input = 0;
 		static int32_t num = 0;
@@ -81,9 +81,10 @@ CharEventCallback CharEvent(char c) {
 			flag_input++;
 			num = 0;
 		}
+		//get input leght to change the carpet
 		beginPaint();
 		paintText(0, 0, CLEAN_LINE);
-		switch (flag_input)
+		switch (flag_input)//beacue we have 2 variable to read.
 		{
 		case 0:break;
 		case 1:
@@ -176,6 +177,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 	}
 	//Use Static variable to check whether the user's Mouse is pressing & moving.
 	//Also it can be easy to write the pen function and erase.
+	//To find which button was choosen.
 	if (x > RECTANGLE_X_LEFT && x < RECTANGLE_X_RIGHT && y > RECTANGLE_Y_UP && y < RECTANGLE_Y_DOWN && button == MOUSE_LEFT && event == CLICK) {
 		beginPaint();
 		setPenColor(BLACK);
@@ -410,6 +412,7 @@ int32_t IO_Init() {
 	CAD_Msg.Size = 10;
 	CAD_Msg.Style = 1;
 	beginPaint();
+	//Put the background image and dashborad, clolor pallet.
 	ACL_Image Pallet, DashBoard;
 	loadImage(".//pallet.bmp", &Pallet);
 	putImage(&Pallet, PALLETX, PALLETY);
@@ -427,6 +430,7 @@ int32_t Erase(int x0, int y0, int size, int style) {
 		switch (style)//0 by default
 		{
 		case 1:
+			//Rectangle erase
 			beginPaint();
 			setBrushColor(WHITE);
 			setPenColor(WHITE);
@@ -436,6 +440,7 @@ int32_t Erase(int x0, int y0, int size, int style) {
 			endPaint();
 			break;
 		case 2:
+			//Round erase
 			beginPaint();
 			setBrushColor(WHITE);
 			setPenColor(WHITE);
@@ -460,11 +465,13 @@ int32_t Craming(int x0, int y0, int size, int style) {
 		switch (style)//0 by default
 		{
 		case 1:
+			//rectangle
 			beginPaint();
 			rectangle(x0, y0, x0 + size, y0 + size);
 			endPaint();
 			break;
 		case 2:
+			//round
 			beginPaint();
 			ellipse(x0, y0, x0 + size, y0 + size);
 			endPaint();
