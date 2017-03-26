@@ -25,20 +25,21 @@ int32_t Erase(int x0, int y0, int size, int style);
 int32_t Craming(int x0, int y0, int size, int style);
 int32_t Words(int x0, int y0, int size, int style);
 //bellows are newly added function
-int32_t	Regular_Triangle(int x0, int y0, int size, int style);
-int32_t Right_Triangle(int x0, int y0, int size, int style);
-int32_t Five_Star(int x0, int y0, int size, int style);
-int32_t Up_Arrow(int x0, int y0, int size, int style);
-int32_t DrawSquare(int x0, int y0, int size, int style);
-int32_t DrawCurve(int x0, int y0, int size, int style);
-int32_t DrawCircle(int x0, int y0, int size, int style);
-int32_t Arc_Rectangle(int x0, int y0, int size, int style);
-int32_t DrawPentagon(int x0, int y0, int size, int style);
-int32_t DownArrow(int x0, int y0, int size, int style);
-int32_t Hexagon(int x0, int y0, int size, int style);
-int32_t Rhombus(int x0, int y0, int size, int style);
-int32_t Six_Star(int x0, int y0, int size, int style);
-int32_t ForeStar(int x0, int y0, int size, int style);
+int32_t	Regular_Triangle(int x0, int y0, int size, int style) { ; }
+int32_t Right_Triangle(int x0, int y0, int size, int style) { ; }
+int32_t Five_Star(int x0, int y0, int size, int style) { ; }
+int32_t Up_Arrow(int x0, int y0, int size, int style) { ; }
+int32_t DrawSquare(int x0, int y0, int size, int style) { ; }
+int32_t DrawCurve(int x0, int y0, int size, int style) ;
+int32_t DrawCircle(int x0, int y0, int size, int style) { ; }
+int32_t Arc_Rectangle(int x0, int y0, int size, int style) { ; }
+int32_t DrawPentagon(int x0, int y0, int size, int style) { ; }
+int32_t DownArrow(int x0, int y0, int size, int style) { ; }
+int32_t Hexagon(int x0, int y0, int size, int style) { ; }
+int32_t Rhombus(int x0, int y0, int size, int style) { ; }
+int32_t Six_Star(int x0, int y0, int size, int style) { ; }
+int32_t ForeStar(int x0, int y0, int size, int style) { ; }
+int32_t Pen(int x0, int y0, int size, int style);
 //barcket the latetst comment
 MsgQueue* NewMsgQueue();
 MsgQueue* Push_Back_Msg(const MsgQueue* p_CurrentMsg);
@@ -61,9 +62,6 @@ int Setup() {
 TimerEventCallback TimerEvent(int timerID) { ; }
 CharEventCallback CharEvent(char c) {
 	//static String Words = NULL;
-	static int32_t Pre_Pos_x, Pre_Pos_y;
-	static String Words_string;
-	printf("Charb =%d", c);
 	static int32_t String_Index = 0;
 	if (m_lMode != WORDS_MODE) {
 		static int32_t flag_input = 0;
@@ -116,21 +114,11 @@ CharEventCallback CharEvent(char c) {
 		endPaint();
 	}
 	else {
-		if (Pre_Pos_x != m_Text_Postion_x && Pre_Pos_y != m_Text_Postion_y) {
-			memset(Words_string, 0, sizeof(Words_string));
-		}
-		Pre_Pos_x = m_Text_Postion_x;
-		Pre_Pos_y = m_Text_Postion_y;
-		beginPaint();
-		String Words_Temp;
-		sprintf(Words_Temp, "%c", c);
-		strcat(Words_string, Words_Temp);
-		paintText(m_Text_Postion_x, m_Text_Postion_y, Words_string);
-		int32_t strlength = strlen(Words_string);
-		setTextSize(TEXT_SIZE);
-		SetCaretPos(m_Text_Postion_x + strlength * 16, m_Text_Postion_y + 15);
+		int32_t strlength = strlen(Words);
+		SetCaretPos(m_Text_Postion_x+ strlength*SIZE_PER_CARET, m_Text_Postion_y);
 		showCaret();
-		endPaint();
+		//paintText(0, 0, Dynamic_Size);
+		//CAD_Msg.Size = num;
 	}
 }
 KeyboardEventCallback KeyboardEvent(int key, int event) {
@@ -154,6 +142,11 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 	}
 	//Use Static variable to check whether the user's Mouse is pressing & moving.
 	//Also it can be easy to write the pen function and erase.
+	static int i = 0;
+	if (i == 0) {
+		DrawRectangle(100, 100, 5, 1);
+		i = 1;
+	}
 	printf("x=%d, y=%d, butoton =%d, event = %d\n", x, y, button, event);
 	if (x > RECTANGLE_X_LEFT && x < RECTANGLE_X_RIGHT && y > RECTANGLE_Y_UP && y < RECTANGLE_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
@@ -162,6 +155,14 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		setPenColor(m_CurrentColor);
 		endPaint();
 		m_lMode = 8;
+	}
+	else if (x > PEN_BUTTON_X_LEFT && x < PEN_BUTTON_X_RIGHT && y > PEN_BUTTON_Y_UP && y < PEN_BUTTON_Y_DOWN && button == 1 && event == 0) {
+		beginPaint();
+		setPenColor(BLACK);
+		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
+		setPenColor(m_CurrentColor);
+		endPaint();
+		m_lMode = 1;
 	}
 	else if (x > ERASE_X_LEFT && x < ERASE_X_RIGHT && y > ERASE_Y_UP && y < ERASE_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
@@ -304,20 +305,26 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		m_lMode = 18;
 	}
 	/*int32_t	Rgular_Triangle(int x0, int y0, int size, int style) { ; }
-	int32_t Right_Triangle(int x0, int y0, int size, int style) { ; }
-	int32_t Five_Star(int x0, int y0, int size, int style) { ; }
-	int32_t Up_Arrow(int x0, int y0, int size, int style) { ; }
-	int32_t DrawSquare(int x0, int y0, int size, int style) { ; }
-	int32_t DrawCurve(int x0, int y0, int size, int style) { ; }
-	int32_t DrawCircle(int x0, int y0, int size, int style) { ; }
-	int32_t Arc_Rectangle(int x0, int y0, int size, int style) { ; }
-	int32_t DrawPentagon(int x0, int y0, int size, int style) { ; }
-	int32_t DownArrow(int x0, int y0, int size, int style) { ; }
-	int32_t Hexagon(int x0, int y0, int size, int style) { ; }*/
+int32_t Right_Triangle(int x0, int y0, int size, int style) { ; }
+int32_t Five_Star(int x0, int y0, int size, int style) { ; }
+int32_t Up_Arrow(int x0, int y0, int size, int style) { ; }
+int32_t DrawSquare(int x0, int y0, int size, int style) { ; }
+int32_t DrawCurve(int x0, int y0, int size, int style) { ; }
+int32_t DrawCircle(int x0, int y0, int size, int style) { ; }
+int32_t Arc_Rectangle(int x0, int y0, int size, int style) { ; }
+int32_t DrawPentagon(int x0, int y0, int size, int style) { ; }
+int32_t DownArrow(int x0, int y0, int size, int style) { ; }
+int32_t Hexagon(int x0, int y0, int size, int style) { ; }*/
 	if (0 != m_lMode && PressDown == 1)
 		//Beacuse we have varible PressDown we don't care the event and button.
 	{
 		switch (m_lMode) {
+		case 1:
+			Pen(x, y, CAD_Msg.Size, CAD_Msg.Style);
+			break;
+		case 4:
+			DrawCurve(x,y, CAD_Msg.Size, CAD_Msg.Style);
+			break;
 		case 8:
 			DrawRectangle(x, y, 1, 1);
 			break;
@@ -378,6 +385,16 @@ int32_t IO_Init() {
 	putImage(&Pallet, PALLETX, PALLETY);
 	putImage(&DashBoard, DASHBOARDX, DASHBOARDY);
 	endPaint();
+}
+int32_t DrawRectangle(int x0, int y0, int size, int style) {
+	switch (style) {
+	case 1:
+		printf("In darw\n");
+		beginPaint();
+		setPenColor(RED);
+		rectangle(x0, y0, x0 + size * 30, y0 + size * 20);
+		endPaint();
+	}
 }
 int32_t Erase(int x0, int y0, int size, int style) {
 	static int32_t Alert_Flag = 1;
@@ -511,44 +528,52 @@ int32_t StraightLine(int x0, int y0, int size, int style) {
 }
 int32_t Words(int x0, int y0, int size, int style) {
 	beginPaint();
-	SetCaretPos(x0, y0);
-	showCaret();
+	hideCaret();
 	endPaint();
 	m_Text_Postion_x = x0;
 	m_Text_Postion_y = y0;
 }
-int32_t DrawRectangle(int x0, int y0, int size, int style) {
+/* The two functions below and Pen_Bottom added */
+int32_t Pen(int x0, int y0, int size, int style) {
+	static int32_t Pen_Times = 0;
 	static int32_t Alert_Flag = 1;
-	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN) {
+	static int32_t Pre_x = 0, Pre_y = 0;
+	printf("0\n");
+	/*if (Pen_Times == 0) {
+	Pen_Times = 1;
+	printf("1\n");
+	return;
+	}
+	if (Pen_Times == 1) {
+	Pre_x = x0;
+	Pre_y = y0;
+	Pen_Times = 2;
+	printf("2\n");
+	}
+
+	if (Pen_Times == 2 && abs(getX() - Pre_x) > 20 || abs(getY() - Pre_y) > 20) {
+	Pen_Times = 0;
+	}
+	setPenColor(BLACK);
+	*/
+	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN && abs(x0 - Pre_x) < 20 || abs(y0 - Pre_y) < 20) {
 		//Encapulse the conditon to a bool lean function in the future.
 		//If-statement to avoid paint the panel.
 		switch (style)//0 by default
 		{
 		case 1:
 			beginPaint();
-			line(x0, y0, x0 + size, y0);
-			line(x0, y0, x0, y0 + size);
-			line(x0 + size, y0, x0 + size, y0 + size);
-			line(x0, y0 + size, x0 + size, y0 + size);
+			setPenWidth(size);
+			printf("3\n");
+			line(Pre_x, Pre_y, x0, y0);
 			endPaint();
 			break;
 		case 2:
 			beginPaint();
-			line(x0, y0, x0 + size*1.5, y0);
-			line(x0, y0, x0, y0 + size);
-			line(x0 + size*1.5, y0, x0 + size*1.5, y0 + size);
-			line(x0, y0 + size, x0 + size*1.5, y0 + size);
+			setPenWidth(size);
+			line(Pre_x, Pre_y, x0, y0);
 			endPaint();
 			break;
-		case 3:
-			beginPaint();
-			line(x0, y0, x0 + size, y0);
-			line(x0, y0, x0, y0 + size*1.5);
-			line(x0 + size, y0, x0 + size, y0 + size*1.5);
-			line(x0, y0 + size*1.5, x0 + size, y0 + size*1.5);
-			endPaint();
-			break;
-
 		default:
 			printf("In msgBox\n");
 			msgBox("Style out of range", "Please input style range from 1 to 2", Alert_Flag);
@@ -556,11 +581,20 @@ int32_t DrawRectangle(int x0, int y0, int size, int style) {
 			break;
 		}
 	}
-	return 0;
+	if (Pen_Times == 1) {
+		beginPaint();
+		setPenColor(m_CurrentColor);
+		Pen_Times = -1;
+		endPaint();
+	}
+	Pre_x = x0;
+	Pre_y = y0;
 }
-int32_t	Regular_Triangle(int x0, int y0, int size, int style)
-{
+int32_t DrawCurve(int x0, int y0, int size, int style) {
 	static int32_t Alert_Flag = 1;
+	static int32_t Pre_x = 0, Pre_y = 0;
+
+
 	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN) {
 		//Encapulse the conditon to a bool lean function in the future.
 		//If-statement to avoid paint the panel.
@@ -568,19 +602,14 @@ int32_t	Regular_Triangle(int x0, int y0, int size, int style)
 		{
 		case 1:
 			beginPaint();
-			line(x0, y0, x0 + size / 2, y0 - size*1.732 / 2);
-			line(x0, y0, x0 + size, y0);
-			line(x0 + size / 2, y0 - size*1.732 / 2, x0 + size, y0);
+			arc(Pre_x, Pre_y, x0, y0, Pre_x - 30, Pre_y, x0, y0);
 			endPaint();
 			break;
 		case 2:
 			beginPaint();
-			line(x0, y0, x0 + size, y0);
-			line(x0, y0, x0 + size / 2, y0 + size*1.732 / 2);
-			line(x0 + size, y0, x0 + size / 2, y0 + size*1.732 / 2);
+			line(Pre_x, Pre_y, x0, y0);
 			endPaint();
 			break;
-
 		default:
 			printf("In msgBox\n");
 			msgBox("Style out of range", "Please input style range from 1 to 2", Alert_Flag);
@@ -588,271 +617,8 @@ int32_t	Regular_Triangle(int x0, int y0, int size, int style)
 			break;
 		}
 	}
-	return 0;
-}
-int32_t Right_Triangle(int x0, int y0, int size, int style)
-{
-	static int32_t Alert_Flag = 1;
-	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN) {
-		//Encapulse the conditon to a bool lean function in the future.
-		//If-statement to avoid paint the panel.
-		switch (style)//0 by default
-		{
-		case 1:
-			beginPaint();
-			line(x0, y0, x0, y0 - size);
-			line(x0, y0, x0 + size, y0);
-			line(x0, y0 - size, x0 + size, y0);
-			endPaint();
-			break;
-		case 2:
-			beginPaint();
-			line(x0, y0, x0, y0 + size*1.732);
-			line(x0, y0, x0 + size, y0 + size*1.732);
-			line(x0, y0 + size*1.732, x0 + size, y0 + size*1.732);
-			endPaint();
-			break;
-		case 3:
-			beginPaint();
-			line(x0, y0, x0, y0 + size);
-			line(x0, y0, x0 + size*1.732, y0 + size);
-			line(x0, y0 + size, x0 + size*1.732, y0 + size);
-			endPaint();
-			break;
 
-		default:
-			printf("In msgBox\n");
-			msgBox("Style out of range", "Please input style range from 1 to 3", Alert_Flag);
-			Alert_Flag = -1;
-			break;
-		}
-	}
-	return 0;
-
-}
-int32_t DrawPentagon(int x0, int y0, int size, int style)
-{
-	static int32_t Alert_Flag = 1;
-	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN) {
-		//Encapulse the conditon to a bool lean function in the future.
-		//If-statement to avoid paint the panel.
-		switch (style)//0 by default
-		{
-		case 1:
-			beginPaint();
-			line(x0, y0, x0 + size*0.81, y0 - size*0.59);
-			line(x0, y0, x0 + size*0.3, y0 + size*0.95);
-			line(x0 + size*0.81, y0 - size*0.59, x0 + size*1.62, y0);
-			line(x0 + size*0.3, y0 + size*0.95, x0 + size*1.3, y0 + size*0.95);
-			line(x0 + size*1.62, y0, x0 + size*1.3, y0 + size*0.95);
-			endPaint();
-			break;
-		default:
-			printf("In msgBox\n");
-			msgBox("Style out of range", "Please input style range from 1 to 1", Alert_Flag);
-			Alert_Flag = -1;
-			break;
-		}
-	}
-	return 0;
-
-}
-int32_t Hexagon(int x0, int y0, int size, int style)
-{
-	static int32_t Alert_Flag = 1;
-	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN) {
-		//Encapulse the conditon to a bool lean function in the future.
-		//If-statement to avoid paint the panel.
-		switch (style)//0 by default
-		{
-		case 1:
-			beginPaint();
-			line(x0, y0, x0 + size / 2, y0 - size*1.732 / 2);
-			line(x0, y0, x0 + size / 2, y0 + size*1.732 / 2);
-			line(x0 + size / 2, y0 - size*1.732 / 2, x0 + size*1.5, y0 - size*1.732 / 2);
-			line(x0 + size / 2, y0 + size*1.732 / 2, x0 + size*1.5, y0 + size*1.732 / 2);
-			line(x0 + size*1.5, y0 - size*1.732 / 2, x0 + size * 2, y0);
-			line(x0 + size*1.5, y0 + size*1.732 / 2, x0 + size * 2, y0);
-			endPaint();
-			break;
-		default:
-			printf("In msgBox\n");
-			msgBox("Style out of range", "Please input style range from 1 to 1", Alert_Flag);
-			Alert_Flag = -1;
-			break;
-		}
-	}
-	return 0;
-
-}
-int32_t Rhombus(int x0, int y0, int size, int style)
-{
-	static int32_t Alert_Flag = 1;
-	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN) {
-		//Encapulse the conditon to a bool lean function in the future.
-		//If-statement to avoid paint the panel.
-		switch (style)//0 by default
-		{
-		case 1:
-			beginPaint();
-			line(x0, y0, x0 + size*1.414, y0 - size*1.414);
-			line(x0, y0, x0 + size*1.414, y0 + size*1.414);
-			line(x0 + size*1.414, y0 - size*1.414, x0 + size*2.828, y0);
-			line(x0 + size*1.414, y0 + size*1.414, x0 + size*2.828, y0);
-			endPaint();
-			break;
-		default:
-			printf("In msgBox\n");
-			msgBox("Style out of range", "Please input style range from 1 to 1", Alert_Flag);
-			Alert_Flag = -1;
-			break;
-		}
-	}
-	return 0;
-
-}
-int32_t Five_Star(int x0, int y0, int size, int style)
-{
-	int s;
-	static int32_t Alert_Flag = 1;
-	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN) {
-		//Encapulse the conditon to a bool lean function in the future.
-		//If-statement to avoid paint the panel.
-		switch (style)//0 by default
-		{
-		case 1:
-			s = size / 2;
-			beginPaint();
-			line(x0, y0, x0 + s, y0);
-			line(x0 + s, y0, x0 + s*1.3, y0 - s*0.95);
-			line(x0 + s*1.3, y0 - s*0.95, x0 + s*1.6, y0);
-			line(x0 + s*1.6, y0, x0 + s*2.6, y0);
-			line(x0 + s*2.6, y0, x0 + s*2.6 - s*0.81, y0 + s*0.59);
-			line(x0 + s*2.6 - s*0.81, y0 + s*0.59, x0 + s*2.6 - s*0.81 + s*0.3, y0 + s*0.59 + s*0.95);
-			line(x0 + s*2.6 - s*0.81 + s*0.3, y0 + s*0.59 + s*0.95, x0 + s*2.6 - s*0.81 + s*0.3 - s*0.81, y0 + s*0.59 + s*0.95 - s*0.59);
-			line(x0 + s*2.6 - s*0.81 + s*0.3 - s*0.81, y0 + s*0.59 + s*0.95 - s*0.59, x0 + s*2.6 - s*0.81 + s*0.3 - s*0.81 * 2, y0 + s*0.59 + s*0.95);
-			line(x0 + s*2.6 - s*0.81 + s*0.3 - s*0.81 * 2, y0 + s*0.59 + s*0.95, x0 + s*0.81, y0 + s*0.59);
-			line(x0, y0, x0 + s*0.81, y0 + s*0.59);
-			endPaint();
-			break;
-		default:
-			printf("In msgBox\n");
-			msgBox("Style out of range", "Please input style range from 1 to 1", Alert_Flag);
-			Alert_Flag = -1;
-			break;
-		}
-	}
-	return 0;
-
-}
-int32_t Six_Star(int x0, int y0, int size, int style)
-{
-	int s;
-	static int32_t Alert_Flag = 1;
-	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN) {
-		//Encapulse the conditon to a bool lean function in the future.
-		//If-statement to avoid paint the panel.
-		switch (style)//0 by default
-		{
-		case 1:
-			s = size / 3;
-			beginPaint();
-			line(x0, y0, x0 + s, y0);
-			line(x0 + s, y0, x0 + s*1.5, y0 - s*1.732 / 2);
-			line(x0 + s*1.5, y0 - s*1.732 / 2, x0 + s * 2, y0);
-			line(x0 + s * 2, y0, x0 + size, y0);
-			line(x0 + size, y0, x0 + s*2.5, y0 + s*1.732 / 2);
-			line(x0 + s*2.5, y0 + s*1.732 / 2, x0 + size, y0 + s*1.732);
-			line(x0, y0, x0 + s / 2, y0 + s*1.732 / 2);
-			line(x0 + s / 2, y0 + s*1.732 / 2, x0, y0 + s*1.732);
-			line(x0, y0 + s*1.732, x0 + s, y0 + s*1.732);
-			line(x0 + s, y0 + s*1.732, x0 + s*1.5, y0 + s*1.732 * 3 / 2);
-			line(x0 + s*1.5, y0 + s*1.732 * 3 / 2, x0 + s * 2, y0 + s*1.732);
-			line(x0 + s * 2, y0 + s*1.732, x0 + size, y0 + s*1.732);
-			endPaint();
-			break;
-		default:
-			printf("In msgBox\n");
-			msgBox("Style out of range", "Please input style range from 1 to 1", Alert_Flag);
-			Alert_Flag = -1;
-			break;
-		}
-	}
-	return 0;
-
-}
-int32_t Arc_Rectangle(int x0, int y0, int size, int style){
-	static int32_t Alert_Flag = 1;
-	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN) {
-		//Encapulse the conditon to a bool lean function in the future.
-		//If-statement to avoid paint the panel.
-		switch (style)//0 by default
-		{
-		case 1:
-			beginPaint();
-			line(x0, y0, x0 + size, y0);
-			line(x0, y0, x0, y0 + size);
-			line(x0 + size, y0, x0 + size, y0 + size);
-			line(x0, y0 + size, x0 + size, y0 + size);
-			endPaint();
-			break;
-		case 2:
-			beginPaint();
-			line(x0, y0, x0 + size*1.5, y0);
-			line(x0, y0, x0, y0 + size);
-			line(x0 + size*1.5, y0, x0 + size*1.5, y0 + size);
-			line(x0, y0 + size, x0 + size*1.5, y0 + size);
-			endPaint();
-			break;
-		case 3:
-			beginPaint();
-			line(x0, y0, x0 + size, y0);
-			line(x0, y0, x0, y0 + size*1.5);
-			line(x0 + size, y0, x0 + size, y0 + size*1.5);
-			line(x0, y0 + size*1.5, x0 + size, y0 + size*1.5);
-			endPaint();
-			break;
-
-		default:
-			printf("In msgBox\n");
-			msgBox("Style out of range", "Please input style range from 1 to 2", Alert_Flag);
-			Alert_Flag = -1;
-			break;
-		}
-	}
-	return 0;
+	Pre_x = x0;
+	Pre_y = y0;
 }
 
-int32_t ForeStar(int x0, int y0, int size, int style) {
-
-	int s;
-	static int32_t Alert_Flag = 1;
-	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN) {
-		//Encapulse the conditon to a bool lean function in the future.
-		//If-statement to avoid paint the panel.
-		switch (style)//0 by default
-		{
-		case 1:
-			s = size / 2;
-			beginPaint();
-			line(x0, y0, x0 + s, y0);
-			line(x0 + s, y0, x0 + s*1.3, y0 - s*0.95);
-			line(x0 + s*1.3, y0 - s*0.95, x0 + s*1.6, y0);
-			line(x0 + s*1.6, y0, x0 + s*2.6, y0);
-			line(x0 + s*2.6, y0, x0 + s*2.6 - s*0.81, y0 + s*0.59);
-			line(x0 + s*2.6 - s*0.81, y0 + s*0.59, x0 + s*2.6 - s*0.81 + s*0.3, y0 + s*0.59 + s*0.95);
-			line(x0 + s*2.6 - s*0.81 + s*0.3, y0 + s*0.59 + s*0.95, x0 + s*2.6 - s*0.81 + s*0.3 - s*0.81, y0 + s*0.59 + s*0.95 - s*0.59);
-			line(x0 + s*2.6 - s*0.81 + s*0.3 - s*0.81, y0 + s*0.59 + s*0.95 - s*0.59, x0 + s*2.6 - s*0.81 + s*0.3 - s*0.81 * 2, y0 + s*0.59 + s*0.95);
-			line(x0 + s*2.6 - s*0.81 + s*0.3 - s*0.81 * 2, y0 + s*0.59 + s*0.95, x0 + s*0.81, y0 + s*0.59);
-			line(x0, y0, x0 + s*0.81, y0 + s*0.59);
-			endPaint();
-			break;
-		default:
-			printf("In msgBox\n");
-			msgBox("Style out of range", "Please input style range from 1 to 1", Alert_Flag);
-			Alert_Flag = -1;
-			break;
-		}
-	}
-	return 0;
-}
