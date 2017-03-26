@@ -772,3 +772,78 @@ int32_t Six_Star(int x0, int y0, int size, int style)
 	return 0;
 
 }
+int32_t Arc_Rectangle(int x0, int y0, int size, int style){
+	static int32_t Alert_Flag = 1;
+	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN) {
+		//Encapulse the conditon to a bool lean function in the future.
+		//If-statement to avoid paint the panel.
+		switch (style)//0 by default
+		{
+		case 1:
+			beginPaint();
+			line(x0, y0, x0 + size, y0);
+			line(x0, y0, x0, y0 + size);
+			line(x0 + size, y0, x0 + size, y0 + size);
+			line(x0, y0 + size, x0 + size, y0 + size);
+			endPaint();
+			break;
+		case 2:
+			beginPaint();
+			line(x0, y0, x0 + size*1.5, y0);
+			line(x0, y0, x0, y0 + size);
+			line(x0 + size*1.5, y0, x0 + size*1.5, y0 + size);
+			line(x0, y0 + size, x0 + size*1.5, y0 + size);
+			endPaint();
+			break;
+		case 3:
+			beginPaint();
+			line(x0, y0, x0 + size, y0);
+			line(x0, y0, x0, y0 + size*1.5);
+			line(x0 + size, y0, x0 + size, y0 + size*1.5);
+			line(x0, y0 + size*1.5, x0 + size, y0 + size*1.5);
+			endPaint();
+			break;
+
+		default:
+			printf("In msgBox\n");
+			msgBox("Style out of range", "Please input style range from 1 to 2", Alert_Flag);
+			Alert_Flag = -1;
+			break;
+		}
+	}
+	return 0;
+}
+
+int32_t ForeStar(int x0, int y0, int size, int style) {
+
+	int s;
+	static int32_t Alert_Flag = 1;
+	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN) {
+		//Encapulse the conditon to a bool lean function in the future.
+		//If-statement to avoid paint the panel.
+		switch (style)//0 by default
+		{
+		case 1:
+			s = size / 2;
+			beginPaint();
+			line(x0, y0, x0 + s, y0);
+			line(x0 + s, y0, x0 + s*1.3, y0 - s*0.95);
+			line(x0 + s*1.3, y0 - s*0.95, x0 + s*1.6, y0);
+			line(x0 + s*1.6, y0, x0 + s*2.6, y0);
+			line(x0 + s*2.6, y0, x0 + s*2.6 - s*0.81, y0 + s*0.59);
+			line(x0 + s*2.6 - s*0.81, y0 + s*0.59, x0 + s*2.6 - s*0.81 + s*0.3, y0 + s*0.59 + s*0.95);
+			line(x0 + s*2.6 - s*0.81 + s*0.3, y0 + s*0.59 + s*0.95, x0 + s*2.6 - s*0.81 + s*0.3 - s*0.81, y0 + s*0.59 + s*0.95 - s*0.59);
+			line(x0 + s*2.6 - s*0.81 + s*0.3 - s*0.81, y0 + s*0.59 + s*0.95 - s*0.59, x0 + s*2.6 - s*0.81 + s*0.3 - s*0.81 * 2, y0 + s*0.59 + s*0.95);
+			line(x0 + s*2.6 - s*0.81 + s*0.3 - s*0.81 * 2, y0 + s*0.59 + s*0.95, x0 + s*0.81, y0 + s*0.59);
+			line(x0, y0, x0 + s*0.81, y0 + s*0.59);
+			endPaint();
+			break;
+		default:
+			printf("In msgBox\n");
+			msgBox("Style out of range", "Please input style range from 1 to 1", Alert_Flag);
+			Alert_Flag = -1;
+			break;
+		}
+	}
+	return 0;
+}
