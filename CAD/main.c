@@ -14,6 +14,8 @@
 //}MsgQueue;
 
 int32_t m_lMode = 0;
+int32_t String_Index;
+char Words_string[100];
 int32_t m_Text_Postion_x = 0;
 int32_t m_Text_Postion_y = 0;
 ACL_Color m_CurrentColor = BLACK;
@@ -62,11 +64,8 @@ int Setup() {
 TimerEventCallback TimerEvent(int timerID) { ; }
 CharEventCallback CharEvent(char c) {
 	//static String Words = NULL;
-	static String Words_string;
-
 	static int32_t Pre_Pos_x, Pre_Pos_y;
 	printf("Charb =%d", c);
-	static int32_t String_Index = 0;
 	if (m_lMode != WORDS_MODE) {
 		static int32_t flag_input = 0;
 		static int32_t num = 0;
@@ -117,9 +116,10 @@ CharEventCallback CharEvent(char c) {
 		}
 		endPaint();
 	}
-	else {
+	else if(c!=8){
 		if (Pre_Pos_x != m_Text_Postion_x && Pre_Pos_y != m_Text_Postion_y) {
 			memset(Words_string, 0, sizeof(Words_string));
+			String_Index = 0;
 		}
 		Pre_Pos_x = m_Text_Postion_x;
 		Pre_Pos_y = m_Text_Postion_y;
@@ -130,8 +130,7 @@ CharEventCallback CharEvent(char c) {
 		paintText(m_Text_Postion_x, m_Text_Postion_y, Words_string);
 		int32_t strlength = strlen(Words_string);
 		setTextSize(TEXT_SIZE);
-		SetCaretPos(m_Text_Postion_x + strlength * 16, m_Text_Postion_y + 15);
-		showCaret();
+		printf("StringIndex = %d\n", String_Index);
 		endPaint();
 	}
 }
@@ -143,6 +142,28 @@ KeyboardEventCallback KeyboardEvent(int key, int event) {
 		Msg_Enter.Size = -1;
 		Push_Back_Msg(&Msg_Enter);
 	}
+	if (event == 1) {
+		if (key == 37) {
+			String_Index = String_Index - 1;
+		}
+		else if (key == 39) {
+			String_Index = String_Index + 1;
+		}
+		else if (key == 8) {
+			beginPaint();
+			Words_string[String_Index] = '\0';
+			setTextSize(TEXT_SIZE*3);
+			paintText(m_Text_Postion_x + (String_Index-1) * 16, m_Text_Postion_y + 15, "  ");
+			String_Index--;
+			endPaint();
+		}
+		else {
+			String_Index++;
+		}
+		setCaretPos(m_Text_Postion_x + String_Index * 16, m_Text_Postion_y + 15);
+		showCaret();
+	}
+
 }
 MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 	//static int32_t  Click_Times = 0;
