@@ -114,12 +114,21 @@ CharEventCallback CharEvent(char c) {
 		endPaint();
 	}
 	else {
-		int32_t strlength = strlen(Words);
-		SetCaretPos(m_Text_Postion_x + strlength*SIZE_PER_CARET, m_Text_Postion_y);
-		String_Index = strlength;
+		if (Pre_Pos_x != m_Text_Postion_x && Pre_Pos_y != m_Text_Postion_y) {
+			memset(Words_string, 0, sizeof(Words_string));
+		}
+		Pre_Pos_x = m_Text_Postion_x;
+		Pre_Pos_y = m_Text_Postion_y;
+		beginPaint();
+		String Words_Temp;
+		sprintf(Words_Temp, "%c", c);
+		strcat(Words_string, Words_Temp);
+		paintText(m_Text_Postion_x, m_Text_Postion_y, Words_string);
+		int32_t strlength = strlen(Words_string);
+		setTextSize(TEXT_SIZE);
+		SetCaretPos(m_Text_Postion_x + strlength * 16, m_Text_Postion_y + 15);
 		showCaret();
-		//paintText(0, 0, Dynamic_Size);
-		//CAD_Msg.Size = num;
+		endPaint();
 	}
 }
 KeyboardEventCallback KeyboardEvent(int key, int event) {
