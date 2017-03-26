@@ -704,6 +704,7 @@ int32_t Rhombus(int x0, int y0, int size, int style)
 }
 int32_t Five_Star(int x0, int y0, int size, int style)
 {
+	int s;
 	static int32_t Alert_Flag = 1;
 	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN) {
 		//Encapulse the conditon to a bool lean function in the future.
@@ -711,7 +712,6 @@ int32_t Five_Star(int x0, int y0, int size, int style)
 		switch (style)//0 by default
 		{
 		case 1:
-			int s;
 			s = size / 2;
 			beginPaint();
 			line(x0, y0, x0 + s, y0);
@@ -738,6 +738,7 @@ int32_t Five_Star(int x0, int y0, int size, int style)
 }
 int32_t Six_Star(int x0, int y0, int size, int style)
 {
+	int s;
 	static int32_t Alert_Flag = 1;
 	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN) {
 		//Encapulse the conditon to a bool lean function in the future.
@@ -745,7 +746,6 @@ int32_t Six_Star(int x0, int y0, int size, int style)
 		switch (style)//0 by default
 		{
 		case 1:
-			int s;
 			s = size / 3;
 			beginPaint();
 			line(x0, y0, x0 + s, y0);
