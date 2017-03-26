@@ -141,11 +141,6 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 	}
 	//Use Static variable to check whether the user's Mouse is pressing & moving.
 	//Also it can be easy to write the pen function and erase.
-	static int i = 0;
-	if (i == 0) {
-		DrawRectangle(100, 100, 5, 1);
-		i = 1;
-	}
 	printf("x=%d, y=%d, butoton =%d, event = %d\n", x, y, button, event);
 	if (x > RECTANGLE_X_LEFT && x < RECTANGLE_X_RIGHT && y > RECTANGLE_Y_UP && y < RECTANGLE_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
