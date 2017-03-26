@@ -61,6 +61,8 @@ int Setup() {
 TimerEventCallback TimerEvent(int timerID) { ; }
 CharEventCallback CharEvent(char c) {
 	//static String Words = NULL;
+	//Hidden dangreous
+	static String Words_string;
 	static int32_t String_Index = 0;
 	if (m_lMode != WORDS_MODE) {
 		static int32_t flag_input = 0;
@@ -114,7 +116,11 @@ CharEventCallback CharEvent(char c) {
 	}
 	else {
 		int32_t strlength = strlen(Words);
+		String Words_Temp;
+		sprintf(Words_Temp, "%c", c);
+		strcat(Words_string, Words_Temp);
 		SetCaretPos(m_Text_Postion_x+ strlength*SIZE_PER_CARET, m_Text_Postion_y);
+		
 		showCaret();
 		//paintText(0, 0, Dynamic_Size);
 		//CAD_Msg.Size = num;
