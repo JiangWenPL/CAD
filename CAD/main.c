@@ -61,6 +61,7 @@ int Setup() {
 TimerEventCallback TimerEvent(int timerID) { ; }
 CharEventCallback CharEvent(char c) {
 	//static String Words = NULL;
+	static String Words_String;
 	static int32_t Pre_Pos_x, Pre_Pos_y;
 	printf("Charb =%d", c);
 	static int32_t String_Index = 0;
