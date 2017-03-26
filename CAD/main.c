@@ -521,6 +521,10 @@ int32_t StraightLine(int x0, int y0, int size, int style) {
 		setPenColor(WHITE);
 		endPaint();
 	}
+	if (Pre_x < TOOLS_RIGHT_X) {
+		Pre_x = x0;
+		Pre_y = y0;
+	}
 	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN) {
 		//Encapulse the conditon to a bool lean function in the future.
 		//If-statement to avoid paint the panel.
@@ -959,7 +963,10 @@ int32_t DrawCurve(int x0, int y0, int size, int style) {
 	static int32_t Alert_Flag = 1;
 	static int32_t Pre_x = 0, Pre_y = 0;
 
-
+	if (Pre_x < TOOLS_RIGHT_X) {
+		Pre_x = x0;
+		Pre_y = y0;
+	}
 	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN) {
 		//Encapulse the conditon to a bool lean function in the future.
 		//If-statement to avoid paint the panel.

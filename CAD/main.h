@@ -27,6 +27,7 @@ typedef struct MSGQUEUE {
 }MsgQueue;
 typedef char String[100];
 //Constants
+#define TOOLS_RIGHT_X 70
 #define PALLETX 960
 #define PALLETY 20
 #define DASHBOARDX 0
