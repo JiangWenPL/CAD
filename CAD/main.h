@@ -19,6 +19,12 @@ typedef char char8_t;
 
 typedef unsigned char uchar8_t;
 typedef double double64_t;
+typedef struct MSGQUEUE {
+	int32_t Size;
+	int32_t Style;
+	struct MSGQUEUE *pNext;
+}MsgQueue;
+typedef char String[100];
 //Constants
 #define PALLETX 960
 #define PALLETY 20
@@ -34,7 +40,16 @@ typedef double double64_t;
 #define ERASE_Y_DOWN 85
 #define PANEL_BUNDARY_LEFT 75
 #define PANEL_BUNDARY_RIGHT 960
-//Color Constans
+#define PANEL_BUNDARY_DOWN 740
+#define CHAR_ENTER 13
+#define CARET_POSITON_Y 5
+#define CARET_POSITON_X_SIZE 50
+#define CARET_POSITON_X_STYLE 55
+#define SIZE_PER_CARET 7
+#define MAX_STYLE 2
+#define MIN_STYLE 1
+#define CLEAN_LINE "                                                                                                                                                                                        "
+//Color Position defination
 #define AA_BUTTON_X_LEFT 965
 #define AA_BUTTON_X_RIGHT 984
 #define AA_BUTTON_Y_DOWN 52
@@ -275,7 +290,7 @@ typedef double double64_t;
 #define CT_BUTTON_X_RIGHT 1023
 #define CT_BUTTON_Y_DOWN 409
 #define CT_BUTTON_Y_UP 391
-//Panels position
+//Panels position's Marco definaton.
 #define PEN_BUTTON_X_LEFT 0
 #define PEN_BUTTON_X_RIGHT 35
 #define PEN_BUTTON_Y_UP 25
