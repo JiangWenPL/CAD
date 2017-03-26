@@ -25,20 +25,20 @@ int32_t Erase(int x0, int y0, int size, int style);
 int32_t Craming(int x0, int y0, int size, int style);
 int32_t Words(int x0, int y0, int size, int style);
 //bellows are newly added function
-int32_t	Regular_Triangle(int x0, int y0, int size, int style) { ; }
-int32_t Right_Triangle(int x0, int y0, int size, int style) { ; }
-int32_t Five_Star(int x0, int y0, int size, int style) { ; }
-int32_t Up_Arrow(int x0, int y0, int size, int style) { ; }
-int32_t DrawSquare(int x0, int y0, int size, int style) { ; }
-int32_t DrawCurve(int x0, int y0, int size, int style) { ; }
-int32_t DrawCircle(int x0, int y0, int size, int style) { ; }
-int32_t Arc_Rectangle(int x0, int y0, int size, int style) { ; }
-int32_t DrawPentagon(int x0, int y0, int size, int style) { ; }
-int32_t DownArrow(int x0, int y0, int size, int style) { ; }
-int32_t Hexagon(int x0, int y0, int size, int style) { ; }
-int32_t Rhombus(int x0, int y0, int size, int style) { ; }
-int32_t Six_Star(int x0, int y0, int size, int style) { ; }
-int32_t ForeStar(int x0, int y0, int size, int style) { ; }
+int32_t	Regular_Triangle(int x0, int y0, int size, int style);
+int32_t Right_Triangle(int x0, int y0, int size, int style);
+int32_t Five_Star(int x0, int y0, int size, int style);
+int32_t Up_Arrow(int x0, int y0, int size, int style);
+int32_t DrawSquare(int x0, int y0, int size, int style);
+int32_t DrawCurve(int x0, int y0, int size, int style);
+int32_t DrawCircle(int x0, int y0, int size, int style);
+int32_t Arc_Rectangle(int x0, int y0, int size, int style);
+int32_t DrawPentagon(int x0, int y0, int size, int style);
+int32_t DownArrow(int x0, int y0, int size, int style);
+int32_t Hexagon(int x0, int y0, int size, int style);
+int32_t Rhombus(int x0, int y0, int size, int style);
+int32_t Six_Star(int x0, int y0, int size, int style);
+int32_t ForeStar(int x0, int y0, int size, int style);
 //barcket the latetst comment
 MsgQueue* NewMsgQueue();
 MsgQueue* Push_Back_Msg(const MsgQueue* p_CurrentMsg);
