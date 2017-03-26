@@ -186,7 +186,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
 		setPenColor(m_CurrentColor);
 		endPaint();
-		m_lMode = 8;
+		m_lMode = M_RECTANGLE;
 	}
 	else if (x > PEN_BUTTON_X_LEFT && x < PEN_BUTTON_X_RIGHT && y > PEN_BUTTON_Y_UP && y < PEN_BUTTON_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
@@ -194,7 +194,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
 		setPenColor(m_CurrentColor);
 		endPaint();
-		m_lMode = 1;
+		m_lMode = M_PEN;
 	}
 	else if (x > ERASE_X_LEFT && x < ERASE_X_RIGHT && y > ERASE_Y_UP && y < ERASE_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
@@ -202,7 +202,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
 		setPenColor(m_CurrentColor);
 		endPaint();
-		m_lMode = 3;
+		m_lMode = M_ERASE;
 	}
 	else if (x > CURVE_BUTTON_X_LEFT && x<CURVE_BUTTON_X_RIGHT && y>CURVE_BUTTON_Y_UP && y < CURVE_BUTTON_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
@@ -210,7 +210,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
 		setPenColor(m_CurrentColor);
 		endPaint();
-		m_lMode = 4;
+		m_lMode = M_CURVE;
 	}
 	else if (x > CRAMING_BUTTON_X_LEFT && x<CRAMING_BUTTON_X_RIGHT && y>CRAMING_BUTTON_Y_UP && y < CRAMING_BUTTON_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
@@ -218,7 +218,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
 		setPenColor(m_CurrentColor);
 		endPaint();
-		m_lMode = 5;
+		m_lMode = M_CRAMING;
 	}
 	else if (x > LINE_BUTTON_X_LEFT && x< LINE_BUTTON_X_RIGHT && y > LINE_BUTTON_Y_UP && y < LINE_BUTTON_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
@@ -226,7 +226,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
 		setPenColor(m_CurrentColor);
 		endPaint();
-		m_lMode = 2;
+		m_lMode = M_LINE;
 	}
 
 	else if (x > WORDS_BUTTON_X_LEFT && x< WORDS_BUTTON_X_RIGHT && y> WORDS_BUTTON_Y_UP && y < WORDS_BUTTON_Y_DOWN && button == 1 && event == 0) {
@@ -235,7 +235,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
 		setPenColor(m_CurrentColor);
 		endPaint();
-		m_lMode = 7;
+		m_lMode = M_WORDS;
 	}
 	else if (x > CIRCLE_BUTTON_X_LEFT && x< CIRCLE_BUTTON_X_RIGHT && y> CIRCLE_BUTTON_Y_UP && y < CIRCLE_BUTTON_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
@@ -244,7 +244,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
 		setPenColor(m_CurrentColor);
 		endPaint();
-		m_lMode = 6;
+		m_lMode = M_CIRCLE;
 	}
 	else if (x >REGULAR_TRIANGLE_BUTTON_X_LEFT && x< REGULAR_TRIANGLE_BUTTON_X_RIGHT && y> REGULAR_TRIANGLE_BUTTON_Y_UP && y < REGULAR_TRIANGLE_BUTTON_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
@@ -253,7 +253,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
 		setPenColor(m_CurrentColor);
 		endPaint();
-		m_lMode = 9;
+		m_lMode = M_REGULAR_TRI;
 	}
 	else if (x >ARC_RECTANGLE_BUTTON_X_LEFT && x< ARC_RECTANGLE_BUTTON_X_RIGHT && y> ARC_RECTANGLE_BUTTON_Y_UP && y < ARC_RECTANGLE_BUTTON_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
@@ -262,7 +262,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
 		setPenColor(m_CurrentColor);
 		endPaint();
-		m_lMode = 10;
+		m_lMode = M_;
 	}
 	else if (x >RIGHT_TRIANGLE_BUTTON_X_LEFT && x< RIGHT_TRIANGLE_BUTTON_X_RIGHT && y>RIGHT_TRIANGLE_BUTTON_Y_UP && y < RIGHT_TRIANGLE_BUTTON_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
@@ -271,7 +271,8 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
 		setPenColor(m_CurrentColor);
 		endPaint();
-		m_lMode = 11;
+		m_lMode = M_RIGHT_TRIANGLE;
+			;
 	}
 	else if (x >FREE_SHAPE_BUTTON_X_LEFT && x< FREE_SHAPE_BUTTON_X_RIGHT && y>FREE_SHAPE_BUTTON_Y_UP && y <FREE_SHAPE_BUTTON_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
@@ -280,7 +281,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
 		setPenColor(m_CurrentColor);
 		endPaint();
-		m_lMode = 11;//12 in contribution
+		m_lMode = M_FREE_SHAPE;//12 in contribution
 	}
 	else if (x >FORE_STAR_BUTTON_X_LEFT && x< FORE_STAR_BUTTON_X_RIGHT && y>FORE_STAR_BUTTON_Y_UP && y < FORE_STAR_BUTTON_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
@@ -289,7 +290,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
 		setPenColor(m_CurrentColor);
 		endPaint();
-		m_lMode = 16;
+		m_lMode = M_FOUR_STAR;
 	}
 	else if (x >PENTAGON_BUTTON_X_LEFT && x< PENTAGON_BUTTON_X_RIGHT && y>PENTAGON_BUTTON_Y_UP && y < PENTAGON_BUTTON_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
@@ -298,7 +299,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
 		setPenColor(m_CurrentColor);
 		endPaint();
-		m_lMode = 14;
+		m_lMode = M_PENTAGON;
 	}
 	else if (x >HEXAGON_BUTTON_X_LEFT && x< HEXAGON_BUTTON_X_RIGHT && y>HEXAGON_BUTTON_Y_UP && y < HEXAGON_BUTTON_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
@@ -307,7 +308,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
 		setPenColor(m_CurrentColor);
 		endPaint();
-		m_lMode = 15;
+		m_lMode = M_HEXAGON;
 	}
 	else if (x >RHOMBUS_BUTTON_X_LEFT && x< RHOMBUS_BUTTON_X_RIGHT && y>RHOMBUS_BUTTON_Y_UP && y < RHOMBUS_BUTTON_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
@@ -316,7 +317,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
 		setPenColor(m_CurrentColor);
 		endPaint();
-		m_lMode = 13;
+		m_lMode = M_RHOMBUS;
 	}
 	else if (x >FIVE_STAR_BUTTON_X_LEFT && x<FIVE_STAR_BUTTON_X_RIGHT && y>FIVE_STAR_BUTTON_Y_UP && y < FIVE_STAR_BUTTON_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
@@ -325,7 +326,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
 		setPenColor(m_CurrentColor);
 		endPaint();
-		m_lMode = 17;
+		m_lMode = M_FIVE_STAR;
 	}
 	else if (x >SIX_STAR_BUTTON_X_LEFT && x<SIX_STAR_BUTTON_X_RIGHT && y>SIX_STAR_BUTTON_Y_UP && y < SIX_STAR_BUTTON_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
@@ -334,7 +335,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
 		setPenColor(m_CurrentColor);
 		endPaint();
-		m_lMode = 18;
+		m_lMode = M_SIX_STAR;
 	}
 	else if (x >COLORS_X_LEFT && x<COLORS_X_RIGHT && y>COLORS_Y_UP && y < COLORS_Y_DOWN && button == 1 && event == 0) {
 		pickcolor( x,  y);
@@ -354,56 +355,56 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		//Beacuse we have varible PressDown we don't care the event and button.
 	{
 		switch (m_lMode) {
-		case 8:
+		case M_RECTANGLE:
 			DrawRectangle(x, y, CAD_Msg.Size, CAD_Msg.Style);
 			break;
 			//Rectangle tool
-		case 1:
+		case M_PEN:
 			Pen(x, y, CAD_Msg.Size, CAD_Msg.Style);
 			break;
-		case 4:
+		case M_CURVE:
 			DrawCurve(x, y, CAD_Msg.Size, CAD_Msg.Style);
 			break;
 
-		case 3:
+		case M_ERASE:
 			printf("In call erase\n");
 			Erase(x, y, CAD_Msg.Size, CAD_Msg.Style);
 			//Erase mode.
 			break;
-		case 5:
+		case M_CRAMING:
 			Craming(x, y, CAD_Msg.Size, CAD_Msg.Style);
 			break;
-		case 2:
+		case M_LINE:
 			StraightLine(x, y, CAD_Msg.Size, CAD_Msg.Style);
 			break;
-		case 7:
+		case M_WORDS:
 			Words(x, y, CAD_Msg.Size, CAD_Msg.Style);
 			break;
-		case 9:
+		case M_REGULAR_TRI:
 			Regular_Triangle(x, y, CAD_Msg.Size, CAD_Msg.Style);
 			break;
-		case 10:
+		case M_ARC_RECTANGLE:
 			Arc_Rectangle(x, y, CAD_Msg.Size, CAD_Msg.Style);
 			break;
-		case 11:
+		case M_RIGHT_TRIANGLE:
 			Right_Triangle(x, y, CAD_Msg.Size, CAD_Msg.Style);
 			break;
-		case 13:
+		case M_RHOMBUS:
 			Rhombus(x, y, CAD_Msg.Size, CAD_Msg.Style);
 			break;
-		case 14:
+		case M_PENTAGON:
 			DrawPentagon(x, y, CAD_Msg.Size, CAD_Msg.Style);
 			break;
-		case 15:
+		case M_HEXAGON:
 			Hexagon(x, y, CAD_Msg.Size, CAD_Msg.Style);
 			break;
-		case 16:
+		case M_FOUR_STAR:
 			ForeStar(x, y, CAD_Msg.Size, CAD_Msg.Style);
 			break;
-		case 17:
+		case M_FIVE_STAR:
 			Five_Star(x, y, CAD_Msg.Size, CAD_Msg.Style);
 			break;
-		case 18:
+		case M_SIX_STAR:
 			Six_Star(x, y, CAD_Msg.Size, CAD_Msg.Style);
 			break;
 		}

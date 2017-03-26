@@ -26,8 +26,27 @@ typedef struct MSGQUEUE {
 	struct MSGQUEUE *pNext;
 }MsgQueue;
 typedef char String[100];
+//ToolsModes
+#define M_PEN 1
+#define M_LINE 2
+#define  M_ERASE 3
+#define M_CURVE 4
+#define M_CRAMING 5
+#define M_CIRCLE 6
+#define M_WORDS 7
+#define M_RECTANGLE 8
+#define M_REGULAR_TRI 9
+#define M_ARC_RECTANGLE 10
+#define M_RIGHT_TRIANGLE 11
+#define  M_FREE_SHAPE 12
+#define  M_RHOMBUS 13
+#define M_PENTAGON 14
+#define M_HEXAGON 15
+#define M_FIVE_STAR 17
+#define M_FOUR_STAR 16
+#define M_SIX_STAR 18
 //Constants
-#define TOOLS_RIGHT_X 70
+
 #define PALLETX 960
 #define PALLETY 20
 #define DASHBOARDX 0
@@ -54,6 +73,7 @@ typedef char String[100];
 #define WORDS_MODE 7
 #define CLEAN_LINE "                                                                                                                                                                                        "
 //Color Position defination
+#define TOOLS_RIGHT_X 70
 #define AA_BUTTON_X_LEFT 965
 #define AA_BUTTON_X_RIGHT 984
 #define AA_BUTTON_Y_DOWN 52
