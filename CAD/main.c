@@ -510,7 +510,8 @@ int32_t StraightLine(int x0, int y0, int size, int style) {
 }
 int32_t Words(int x0, int y0, int size, int style) {
 	beginPaint();
-	hideCaret();
+	SetCaretPos(x0, y0);
+	showCaret();
 	endPaint();
 	m_Text_Postion_x = x0;
 	m_Text_Postion_y = y0;
