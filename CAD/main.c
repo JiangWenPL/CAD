@@ -336,6 +336,9 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		endPaint();
 		m_lMode = 18;
 	}
+	else if (x >COLORS_X_LEFT && x<COLORS_X_RIGHT && y>COLORS_Y_UP && y < COLORS_Y_DOWN && button == 1 && event == 0) {
+		pickcolor( x,  y);
+	}
 	/*int32_t	Rgular_Triangle(int x0, int y0, int size, int style) { ; }
 	int32_t Right_Triangle(int x0, int y0, int size, int style) { ; }
 	int32_t Five_Star(int x0, int y0, int size, int style) { ; }
