@@ -61,7 +61,8 @@ int Setup() {
 TimerEventCallback TimerEvent(int timerID) { ; }
 CharEventCallback CharEvent(char c) {
 	//static String Words = NULL;
-	static String Words_String;
+	static String Words_string;
+
 	static int32_t Pre_Pos_x, Pre_Pos_y;
 	printf("Charb =%d", c);
 	static int32_t String_Index = 0;
@@ -319,7 +320,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 	{
 		switch (m_lMode) {
 		case 8:
-			DrawRectangle(x, y, 1, 1);
+			DrawRectangle(x, y, CAD_Msg.Size, CAD_Msg.Style);
 			break;
 			//Rectangle tool
 		case 3:
