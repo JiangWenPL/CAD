@@ -20,6 +20,7 @@ ACL_Color m_CurrentColor = BLACK;
 MsgQueue* p_MsgHead = NULL;
 MsgQueue CAD_Msg;
 int32_t IO_Init();
+int32_t Pen(int x0, int y0, int size, int style);
 int32_t DrawRectangle(int x0, int y0, int size, int style);
 int32_t Erase(int x0, int y0, int size, int style);
 int32_t Craming(int x0, int y0, int size, int style);
@@ -30,7 +31,7 @@ int32_t Right_Triangle(int x0, int y0, int size, int style) { ; }
 int32_t Five_Star(int x0, int y0, int size, int style) { ; }
 int32_t Up_Arrow(int x0, int y0, int size, int style) { ; }
 int32_t DrawSquare(int x0, int y0, int size, int style) { ; }
-int32_t DrawCurve(int x0, int y0, int size, int style) { ; }
+int32_t DrawCurve(int x0, int y0, int size, int style);
 int32_t DrawCircle(int x0, int y0, int size, int style) { ; }
 int32_t Arc_Rectangle(int x0, int y0, int size, int style) { ; }
 int32_t DrawPentagon(int x0, int y0, int size, int style) { ; }
@@ -62,6 +63,7 @@ TimerEventCallback TimerEvent(int timerID) { ; }
 CharEventCallback CharEvent(char c) {
 	//static String Words = NULL;
 	//Hidden dangreous
+	static int32_t Pre_Pos_x, Pre_Pos_y;
 	static String Words_string;
 	static int32_t String_Index = 0;
 	if (m_lMode != WORDS_MODE) {
@@ -115,15 +117,20 @@ CharEventCallback CharEvent(char c) {
 		endPaint();
 	}
 	else {
-		int32_t strlength = strlen(Words);
+		if (Pre_Pos_x != m_Text_Postion_x && Pre_Pos_y != m_Text_Postion_y) {
+			memset(Words_string,0,sizeof(Words_string));
+		}
+		Pre_Pos_x = m_Text_Postion_x;
+		Pre_Pos_y = m_Text_Postion_y;
+		beginPaint();
 		String Words_Temp;
 		sprintf(Words_Temp, "%c", c);
 		strcat(Words_string, Words_Temp);
-		SetCaretPos(m_Text_Postion_x+ strlength*SIZE_PER_CARET, m_Text_Postion_y);
-		
+		paintText(m_Text_Postion_x, m_Text_Postion_y, Words_string);
+		int32_t strlength = strlen(Words_string);
+		SetCaretPos(m_Text_Postion_x + strlength*SIZE_PER_CARET, m_Text_Postion_y);
 		showCaret();
-		//paintText(0, 0, Dynamic_Size);
-		//CAD_Msg.Size = num;
+		endPaint();
 	}
 }
 KeyboardEventCallback KeyboardEvent(int key, int event) {
@@ -309,17 +316,6 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		endPaint();
 		m_lMode = 18;
 	}
-	/*int32_t	Rgular_Triangle(int x0, int y0, int size, int style) { ; }
-int32_t Right_Triangle(int x0, int y0, int size, int style) { ; }
-int32_t Five_Star(int x0, int y0, int size, int style) { ; }
-int32_t Up_Arrow(int x0, int y0, int size, int style) { ; }
-int32_t DrawSquare(int x0, int y0, int size, int style) { ; }
-int32_t DrawCurve(int x0, int y0, int size, int style) { ; }
-int32_t DrawCircle(int x0, int y0, int size, int style) { ; }
-int32_t Arc_Rectangle(int x0, int y0, int size, int style) { ; }
-int32_t DrawPentagon(int x0, int y0, int size, int style) { ; }
-int32_t DownArrow(int x0, int y0, int size, int style) { ; }
-int32_t Hexagon(int x0, int y0, int size, int style) { ; }*/
 	if (0 != m_lMode && PressDown == 1)
 		//Beacuse we have varible PressDown we don't care the event and button.
 	{
@@ -530,7 +526,8 @@ int32_t StraightLine(int x0, int y0, int size, int style) {
 }
 int32_t Words(int x0, int y0, int size, int style) {
 	beginPaint();
-	hideCaret();
+	SetCaretPos(x0, y0);
+	showCaret();
 	endPaint();
 	m_Text_Postion_x = x0;
 	m_Text_Postion_y = y0;
