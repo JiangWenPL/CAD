@@ -45,8 +45,13 @@ typedef char String[100];
 #define M_FIVE_STAR 17
 #define M_FOUR_STAR 16
 #define M_SIX_STAR 18
+//Status
+#define TRUE 1
+#define FALSE 0
+#define OFF -1
+#define MOUSE_LEFT 1
+#define CLICK 0
 //Constants
-
 #define PALLETX 960
 #define PALLETY 20
 #define DASHBOARDX 0
