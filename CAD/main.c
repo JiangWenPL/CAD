@@ -61,6 +61,7 @@ int Setup() {
 }
 TimerEventCallback TimerEvent(int timerID) { ; }
 CharEventCallback CharEvent(char c) {
+	printf("Char = %d\n", c);
 	//static String Words = NULL;
 	//Hidden dangreous
 	static int32_t Pre_Pos_x, Pre_Pos_y;
@@ -161,6 +162,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		i = 1;
 	}
 	printf("x=%d, y=%d, butoton =%d, event = %d\n", x, y, button, event);
+	//Below are function in the panel.
 	if (x > RECTANGLE_X_LEFT && x < RECTANGLE_X_RIGHT && y > RECTANGLE_Y_UP && y < RECTANGLE_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
 		setPenColor(BLACK);
@@ -593,8 +595,6 @@ int32_t Pen(int x0, int y0, int size, int style) {
 int32_t DrawCurve(int x0, int y0, int size, int style) {
 	static int32_t Alert_Flag = 1;
 	static int32_t Pre_x = 0, Pre_y = 0;
-
-
 	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN) {
 		//Encapulse the conditon to a bool lean function in the future.
 		//If-statement to avoid paint the panel.
@@ -617,7 +617,6 @@ int32_t DrawCurve(int x0, int y0, int size, int style) {
 			break;
 		}
 	}
-
 	Pre_x = x0;
 	Pre_y = y0;
 }
