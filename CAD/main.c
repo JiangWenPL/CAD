@@ -43,6 +43,7 @@ int Setup() {
 }
 TimerEventCallback TimerEvent(int timerID) { ; }
 CharEventCallback CharEvent(char c) {
+	//if(m_lMode!=WORDS)
 	static int32_t flag_input = 0;
 	static int32_t num = 0;
 	static MsgQueue Msg;
@@ -120,6 +121,11 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 	}
 	printf("x=%d, y=%d, butoton =%d, event = %d\n", x, y, button, event);
 	if (x > RECTANGLE_X_LEFT && x < RECTANGLE_X_RIGHT && y > RECTANGLE_Y_UP && y < RECTANGLE_Y_DOWN && button == 1 && event == 0) {
+		beginPaint();
+		setPenColor(BLACK);
+		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
+		setPenColor(m_CurrentColor);
+		endPaint();
 		m_lMode = 8;
 	}
 	else if (x > ERASE_X_LEFT && x < ERASE_X_RIGHT && y > ERASE_Y_UP && y < ERASE_Y_DOWN && button == 1 && event == 0) {
@@ -319,4 +325,7 @@ int32_t StraightLine(int x0, int y0, int size, int style) {
 	}
 	Pre_x = x0;
 	Pre_y = y0;
+}
+int32_t Words(int x0, int y0, int size, int style) {
+
 }
