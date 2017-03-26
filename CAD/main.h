@@ -48,6 +48,7 @@ typedef char String[100];
 #define SIZE_PER_CARET 7
 #define MAX_STYLE 2
 #define MIN_STYLE 1
+#define TEXT_SIZE 30
 #define WORDS_MODE 7
 #define CLEAN_LINE "                                                                                                                                                                                        "
 //Color Position defination

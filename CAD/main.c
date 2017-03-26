@@ -128,7 +128,8 @@ CharEventCallback CharEvent(char c) {
 		strcat(Words_string, Words_Temp);
 		paintText(m_Text_Postion_x, m_Text_Postion_y, Words_string);
 		int32_t strlength = strlen(Words_string);
-		SetCaretPos(m_Text_Postion_x + strlength*SIZE_PER_CARET, m_Text_Postion_y);
+		setTextSize(TEXT_SIZE);
+		SetCaretPos(m_Text_Postion_x + strlength*16, m_Text_Postion_y+15);
 		showCaret();
 		endPaint();
 	}
