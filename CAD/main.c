@@ -917,7 +917,7 @@ int32_t Pen(int x0, int y0, int size, int style) {
 	}
 	setPenColor(BLACK);
 	*/
-	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN && abs(x0 - Pre_x) < 20 || abs(y0 - Pre_y) < 20) {
+	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN && abs(x0 - Pre_x) < 20 && abs(y0 - Pre_y) < 20) {
 		//Encapulse the conditon to a bool lean function in the future.
 		//If-statement to avoid paint the panel.
 		switch (style)//0 by default
