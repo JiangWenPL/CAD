@@ -12,6 +12,7 @@
 //	int32_t style;
 //	struct MSGQUEUE *pNext;
 //}MsgQueue;
+
 int32_t m_lMode = 0;
 ACL_Color m_CurrentColor = BLACK;
 MsgQueue* p_MsgHead = NULL;
@@ -21,6 +22,7 @@ int32_t DrawRectangle(int x0, int y0, int size, int style);
 int32_t Erase(int x0, int y0, int size, int style);
 int32_t Craming(int x0, int y0, int size, int style);
 int32_t Words(int x0, int y0, int size, int style);
+int32_t StraightLine(int x0, int y0, int size, int style);
 MsgQueue* NewMsgQueue();
 MsgQueue* Push_Back_Msg(const MsgQueue* p_CurrentMsg);
 MsgQueue Pop_Msg();
@@ -118,7 +120,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 	}
 	printf("x=%d, y=%d, butoton =%d, event = %d\n", x, y, button, event);
 	if (x > RECTANGLE_X_LEFT && x < RECTANGLE_X_RIGHT && y > RECTANGLE_Y_UP && y < RECTANGLE_Y_DOWN && button == 1 && event == 0) {
-		m_lMode = 1;
+		m_lMode = 8;
 	}
 	else if (x > ERASE_X_LEFT && x < ERASE_X_RIGHT && y > ERASE_Y_UP && y < ERASE_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
@@ -136,11 +138,19 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		endPaint();
 		m_lMode = 5;
 	}
+	else if (x > LINE_BUTTON_X_LEFT && x< LINE_BUTTON_X_RIGHT && y > LINE_BUTTON_Y_UP && y < LINE_BUTTON_Y_DOWN&& button == 1 && event == 0) {
+		beginPaint();
+		setPenColor(BLACK);
+		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
+		setPenColor(m_CurrentColor);
+		endPaint();
+		m_lMode = 2;
+	}
 	if (0 != m_lMode && PressDown == 1)
 		//Beacuse we have varible PressDown we don't care the event and button.
 	{
 		switch (m_lMode) {
-		case 1:
+		case 8:
 			DrawRectangle(x, y, 1, 1);
 			break;
 			//Rectangle tool
@@ -152,6 +162,8 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		case 5:
 			Craming(x,y, CAD_Msg.Size, CAD_Msg.Style);
 			break;
+		case 2:
+			StraightLine(x, y, CAD_Msg.Size, CAD_Msg.Style);
 		}
 	}
 }
@@ -266,4 +278,45 @@ MsgQueue Pop_Msg() {
 	}
 	free(p_FreeTemp);
 	return p_Return;
+}
+int32_t StraightLine(int x0, int y0, int size, int style) {
+	static int32_t Pen_Times = 0;
+	static int32_t Alert_Flag = 1;
+	static int32_t Pre_x = 0, Pre_y = 0;
+	if (Pen_Times == 0) {
+		Pen_Times = 1;
+		beginPaint();
+		setPenColor(WHITE);
+		endPaint();
+	}
+	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN) {
+		//Encapulse the conditon to a bool lean function in the future.
+		//If-statement to avoid paint the panel.
+		switch (style)//0 by default
+		{
+		case 1:
+			beginPaint();
+			line(Pre_x, Pre_y, x0, y0);
+			endPaint();
+			break;
+		case 2:
+			beginPaint();
+			line(Pre_x, Pre_y, x0, y0);
+			endPaint();
+			break;
+		default:
+			printf("In msgBox\n");
+			msgBox("Style out of range", "Please input style range from 1 to 2", Alert_Flag);
+			Alert_Flag = -1;
+			break;
+		}
+	}
+	if (Pen_Times == 1) {
+		beginPaint();
+		setPenColor(m_CurrentColor);
+		Pen_Times = -1;
+		endPaint();
+	}
+	Pre_x = x0;
+	Pre_y = y0;
 }
