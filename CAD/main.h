@@ -482,4 +482,8 @@ typedef char String[100];
 #define COLORS_X_RIGHT 1024
 #define COLORS_Y_UP 25
 #define COLORS_Y_DOWN 415
+#define KEY_LEFT 37
+#define KEY_RIGHT 39
+#define KEY_BACKSPACE 8
+#define PIXEL_INTESITY 3
 #endif // !MAIN_H
