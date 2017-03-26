@@ -12,6 +12,7 @@
 
 #include "acllib.h"
 #include<stdio.h>
+#include"colors.h"
 /*Use typedefine to set our own type. WJ*/
 typedef int int32_t;
 typedef unsigned int  uint32_t;
