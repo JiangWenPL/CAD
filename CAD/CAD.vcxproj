@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="acllib.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="colors.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

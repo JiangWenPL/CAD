@@ -1,0 +1,61 @@
+#pragma once
+#define AA  			RGB(0  ,0, 0),
+#define AB  			RGB(64 ,64,64),
+#define AC  			RGB(96 ,96,64),
+#define AD  			RGB(255  ,255, 0),
+#define AE    			RGB(255  ,255, 0),
+#define AF  			RGB(224  ,224, 64),
+#define AG  			RGB(224  ,160, 0),
+#define AH  			RGB(224  ,96, 0),
+#define AI  			RGB(224  ,0, 64),
+#define AJ  			RGB(160 ,32, 0),
+#define AK 			RGB(224  ,96, 192),
+#define AL  			RGB(224  ,96, 128),
+#define AM 			RGB(160  ,96, 192),
+#define AN  			RGB(128  ,96, 128),
+#define AO  			RGB(96  ,96, 128),
+#define AP  			RGB(96  ,128, 192),
+#define AQ  			RGB(64  ,128, 192),
+#define AR  			RGB(0  ,192, 192),
+#define AS  			RGB(32  ,192, 192),
+#define AT  			RGB(64  ,128, 128),
+#define BA  			RGB(128,128,128),
+#define BB  			RGB(192,192,192),
+#define BC  			RGB(192,220,192),
+#define BD  			RGB(224,192,64),
+#define BE    			RGB(224,224,128),
+#define BF  			RGB(192,160, 0),
+#define BG  			RGB(192,160, 0),
+#define BH  			RGB(32,128,64),
+#define BI  			RGB(160  ,96, 0),
+#define BJ  			RGB(160  ,64, 0),
+#define BK  			RGB(160,96,64),
+#define BL  			RGB(128,96,64),
+#define BM 			RGB(224  ,0, 64),
+#define BN  			RGB(224  ,0, 128),
+#define BO 			RGB(160 ,32,128),
+#define BP  			RGB(96 ,32,128),
+#define BQ  			RGB(32 ,32,128),
+#define BR 			RGB(0  ,64,128),
+#define BS  			RGB(0  ,64,128),
+#define BT  			RGB(64,160,128),
+#define CA  			RGB(160,160,164),
+#define CB  			RGB(255,251,140),
+#define CC  			RGB(255,255,255),
+#define CD  			RGB(32,224,64),
+#define CE    			RGB(0  ,164,64),
+#define CF  			RGB(0  ,96,64),
+#define CG 			RGB(64,64,64),
+#define CH  			RGB(0  ,96,64),
+#define CI 			RGB(0  ,96, 0),
+#define CJ 			RGB(64,96, 0),
+#define CK  			RGB(128,160,64)
+#define CL 			RGB(96,64, 0)
+#define CM 			RGB(128,32, 0)
+#define CN  			RGB(128,0,0)
+#define CO  			RGB(160  ,0, 64)
+#define CP 			RGB(96 ,0, 64)
+#define CQ 			RGB(64 ,0,128)
+#define CR   			RGB(32 ,32,128)
+#define CS			RGB(0,0,64)
+#define CT  			RGB(0,96,192)
