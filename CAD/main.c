@@ -156,6 +156,7 @@ KeyboardEventCallback KeyboardEvent(int key, int event) {
 			paintText(m_Text_Postion_x + (String_Index-1) * 16, m_Text_Postion_y + 15, "  ");
 			String_Index--;
 			endPaint();
+			if (String_Index < 0) return -1;
 		}
 		else {
 			String_Index++;
