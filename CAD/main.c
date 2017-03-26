@@ -155,6 +155,14 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		endPaint();
 		m_lMode = 8;
 	}
+	else if (x > PEN_BUTTON_X_LEFT && x < PEN_BUTTON_X_RIGHT && y > PEN_BUTTON_Y_UP && y < PEN_BUTTON_Y_DOWN && button == 1 && event == 0) {
+		beginPaint();
+		setPenColor(BLACK);
+		paintText(0, 0, "Please input Size(pixels) and Style. Seperated by enter");
+		setPenColor(m_CurrentColor);
+		endPaint();
+		m_lMode = 1;
+	}
 	else if (x > ERASE_X_LEFT && x < ERASE_X_RIGHT && y > ERASE_Y_UP && y < ERASE_Y_DOWN && button == 1 && event == 0) {
 		beginPaint();
 		setPenColor(BLACK);
@@ -310,6 +318,9 @@ int32_t Hexagon(int x0, int y0, int size, int style) { ; }*/
 		//Beacuse we have varible PressDown we don't care the event and button.
 	{
 		switch (m_lMode) {
+		case 1:
+			Pen(x, y, CAD_Msg.Size, CAD_Msg.Style);
+			break;
 		case 8:
 			DrawRectangle(x, y, 1, 1);
 			break;
@@ -517,4 +528,92 @@ int32_t Words(int x0, int y0, int size, int style) {
 	endPaint();
 	m_Text_Postion_x = x0;
 	m_Text_Postion_y = y0;
+}
+/* The two functions below and Pen_Bottom added */
+int32_t Pen(int x0, int y0, int size, int style) {
+	static int32_t Pen_Times = 0;
+	static int32_t Alert_Flag = 1;
+	static int32_t Pre_x = 0, Pre_y = 0;
+	printf("0\n");
+	/*if (Pen_Times == 0) {
+	Pen_Times = 1;
+	printf("1\n");
+	return;
+	}
+	if (Pen_Times == 1) {
+	Pre_x = x0;
+	Pre_y = y0;
+	Pen_Times = 2;
+	printf("2\n");
+	}
+
+	if (Pen_Times == 2 && abs(getX() - Pre_x) > 20 || abs(getY() - Pre_y) > 20) {
+	Pen_Times = 0;
+	}
+	setPenColor(BLACK);
+	*/
+	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN && abs(x0 - Pre_x) < 20 || abs(y0 - Pre_y) < 20) {
+		//Encapulse the conditon to a bool lean function in the future.
+		//If-statement to avoid paint the panel.
+		switch (style)//0 by default
+		{
+		case 1:
+			beginPaint();
+			setPenWidth(size);
+			printf("3\n");
+			line(Pre_x, Pre_y, x0, y0);
+			endPaint();
+			break;
+		case 2:
+			beginPaint();
+			setPenWidth(size);
+			line(Pre_x, Pre_y, x0, y0);
+			endPaint();
+			break;
+		default:
+			printf("In msgBox\n");
+			msgBox("Style out of range", "Please input style range from 1 to 2", Alert_Flag);
+			Alert_Flag = -1;
+			break;
+		}
+	}
+	if (Pen_Times == 1) {
+		beginPaint();
+		setPenColor(m_CurrentColor);
+		Pen_Times = -1;
+		endPaint();
+	}
+	Pre_x = x0;
+	Pre_y = y0;
+}
+int32_t DrawCurve(int x0, int y0, int size, int style) {
+	static int32_t Alert_Flag = 1;
+	static int32_t Pre_x = 0, Pre_y = 0;
+
+
+	if (x0 > PANEL_BUNDARY_LEFT && x0 < PANEL_BUNDARY_RIGHT && y0 < PANEL_BUNDARY_DOWN) {
+		//Encapulse the conditon to a bool lean function in the future.
+		//If-statement to avoid paint the panel.
+		switch (style)//0 by default
+		{
+		case 1:
+			beginPaint();
+			arc(Pre_x, Pre_y, x0, y0, Pre_x - 30, Pre_y, x0, y0);
+			endPaint();
+			break;
+		case 2:
+			beginPaint();
+			line(Pre_x, Pre_y, x0, y0);
+			endPaint();
+			break;
+		default:
+			printf("In msgBox\n");
+			msgBox("Style out of range", "Please input style range from 1 to 2", Alert_Flag);
+			Alert_Flag = -1;
+			break;
+		}
+	}
+
+	Pre_x = x0;
+	Pre_y = y0;
 }
