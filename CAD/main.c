@@ -76,7 +76,7 @@ CharEventCallback CharEvent(char c) {
 		int32_t length_Temp = num;
 		while (length_Temp != FALSE) {
 			length++;
-			length_Temp = length_Temp / 10;
+			length_Temp = length_Temp / DEXMINAL;
 		}
 		if (FALSE == flag_input) flag_input = TRUE;
 		if (CHAR_ENTER == c) {
@@ -94,7 +94,7 @@ CharEventCallback CharEvent(char c) {
 			SetCaretPos(CARET_POSITON_X_SIZE + length*SIZE_PER_CARET, CARET_POSITON_Y);
 			showCaret();
 			if (isdigit(c)) {
-				num = num * 10 + c - '0';
+				num = num *  DEXMINAL + c - '0';
 			}
 			String Dynamic_Size;
 			sprintf(Dynamic_Size, "size = %d pixels", num);
@@ -104,7 +104,7 @@ CharEventCallback CharEvent(char c) {
 		case 2:
 			SetCaretPos(CARET_POSITON_X_STYLE + length*SIZE_PER_CARET, CARET_POSITON_Y);
 			if (isdigit(c)) {
-				num = num * 10 + c - '0';
+				num = num *DEXMINAL + c - '0';
 			}
 			sprintf(Dynamic_Size, "style = %d", num);
 			paintText(0, 0, Dynamic_Size);

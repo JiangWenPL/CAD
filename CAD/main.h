@@ -492,4 +492,6 @@ typedef char String[100];
 #define KEY_RIGHT 39
 #define KEY_BACKSPACE 8
 #define PIXEL_INTESITY 3
+#define DEXMINAL 10
+#define STRING_LENGTH 16
 #endif // !MAIN_H
