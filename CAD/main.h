@@ -12,7 +12,6 @@
 
 #include "acllib.h"
 #include<stdio.h>
-#include"colors.h"
 /*Use typedefine to set our own type. WJ*/
 typedef int int32_t;
 typedef unsigned int  uint32_t;
@@ -27,6 +26,7 @@ typedef struct MSGQUEUE {
 }MsgQueue;
 typedef char String[100];
 //ToolsModes
+#define END_WITHOUT_ERROR 0
 #define M_PEN 1
 #define M_LINE 2
 #define  M_ERASE 3
@@ -78,6 +78,7 @@ typedef char String[100];
 #define WORDS_MODE 7
 #define CLEAN_LINE "                                                                                                                                                                                        "
 //Color Position defination
+#define COORDINATE_ORIGIN 0
 #define TOOLS_RIGHT_X 70
 #define AA_BUTTON_X_LEFT 965
 #define AA_BUTTON_X_RIGHT 984
@@ -416,6 +417,11 @@ typedef char String[100];
 #define CIRCLE_DIALOG_BUTTON_X_RIGHT 70
 #define CIRCLE_DIALOG_BUTTON_Y_UP 385
 #define CIRCLE_DIALOG_BTTON_Y_DOWN 410
+#define CANCLE_BUTTON_X_LEFT 0
+#define CANCLE_BUTTON_X_RIGHT 35
+#define CANCLE_BUTTON_Y_UP 385
+#define CANCLE_BTTON_Y_DOWN 410
+#define M_CANCLE 19
 //Belowes are RGB color define
 #define AA  			RGB(0  ,0, 0)
 #define AB  			RGB(64 ,64,64)

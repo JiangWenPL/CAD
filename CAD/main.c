@@ -22,6 +22,7 @@ ACL_Color m_CurrentColor = BLACK;
 MsgQueue* p_MsgHead = NULL;
 MsgQueue CAD_Msg;
 int32_t IO_Init();
+int32_t Pen(int x0, int y0, int size, int style);
 int32_t DrawRectangle(int x0, int y0, int size, int style);
 int32_t Erase(int x0, int y0, int size, int style);
 int32_t Craming(int x0, int y0, int size, int style);
@@ -41,6 +42,7 @@ int32_t Hexagon(int x0, int y0, int size, int style);
 int32_t Rhombus(int x0, int y0, int size, int style);
 int32_t Six_Star(int x0, int y0, int size, int style);
 int32_t ForeStar(int x0, int y0, int size, int style);
+int32_t Cancle(int x0, int y0, int size, int style);
 //Pick color
 int32_t pickcolor(int x, int y);
 //barcket the latetst comment
@@ -56,10 +58,10 @@ int Setup() {
 	initWindow("CAD", DEFAULT, DEFAULT, 1024, 768);
 	//Deafult 1024*768 windows.
 	IO_Init();
-	registerTimerEvent(&TimerEvent);
-	registerKeyboardEvent(&KeyboardEvent);
-	registerCharEvent(&CharEvent);
-	registerMouseEvent(&MouseEvent);
+	registerTimerEvent(TimerEvent);
+	registerKeyboardEvent(KeyboardEvent);
+	registerCharEvent(CharEvent);
+	registerMouseEvent(MouseEvent);
 	return 0;
 }
 TimerEventCallback TimerEvent(int timerID) { ; }
@@ -133,6 +135,7 @@ CharEventCallback CharEvent(char c) {
 		setTextSize(TEXT_SIZE);
 		endPaint();
 	}
+	return END_WITHOUT_ERROR;
 }
 KeyboardEventCallback KeyboardEvent(int key, int event) {
 	if (key == CHAR_ENTER) {
@@ -335,6 +338,15 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		endPaint();
 		m_lMode = M_SIX_STAR;
 	}
+	else if (x >CANCLE_BUTTON_X_LEFT && x<CANCLE_BUTTON_X_RIGHT && y>CANCLE_BUTTON_Y_UP && y < CANCLE_BTTON_Y_DOWN && button == MOUSE_LEFT && event == CLICK) {
+		beginPaint();
+		setPenColor(BLACK);
+		paintText(0, 0, CLEAN_LINE);
+		paintText(0, 0, "Clearing device");
+		setPenColor(m_CurrentColor);
+		endPaint();
+		m_lMode = M_CANCLE;
+	}
 	else if (x >COLORS_X_LEFT && x<COLORS_X_RIGHT && y>COLORS_Y_UP && y < COLORS_Y_DOWN && button == MOUSE_LEFT && event == CLICK) {
 		pickcolor( x,  y);
 	}
@@ -404,6 +416,9 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 		case M_SIX_STAR:
 			Six_Star(x, y, CAD_Msg.Size, CAD_Msg.Style);
 			break;
+		case M_CANCLE:
+			Cancle(COORDINATE_ORIGIN, COORDINATE_ORIGIN,CAD_Msg.Size, CAD_Msg.Style);
+			break;
 		}
 	}
 }
@@ -411,6 +426,7 @@ int32_t IO_Init() {
 	p_MsgHead = NewMsgQueue();
 	CAD_Msg.Size = 10;
 	CAD_Msg.Style = 1;
+	//initConsole();
 	beginPaint();
 	//Put the background image and dashborad, clolor pallet.
 	ACL_Image Pallet, DashBoard;
@@ -937,6 +953,7 @@ int32_t Pen(int x0, int y0, int size, int style) {
 	}
 	Pre_x = x0;
 	Pre_y = y0;
+	return END_WITHOUT_ERROR;
 }
 int32_t DrawCurve(int x0, int y0, int size, int style) {
 	static int32_t Alert_Flag = TRUE;
@@ -1279,4 +1296,16 @@ int32_t pickcolor(int x, int y)
 	}
 	endPaint();
 	return 0;
+}
+int32_t Cancle(int x0, int y0, int size, int style) {
+	beginPaint();
+	clearDevice();
+	ACL_Image Pallet, DashBoard;
+	loadImage(".//pallet.bmp", &Pallet);
+	putImage(&Pallet, PALLETX, PALLETY);
+	loadImage(".//DashBoard.bmp", &DashBoard);
+	putImage(&Pallet, PALLETX, PALLETY);
+	putImage(&DashBoard, DASHBOARDX, DASHBOARDY);
+	endPaint();
+	return END_WITHOUT_ERROR;
 }
