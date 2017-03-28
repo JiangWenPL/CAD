@@ -43,6 +43,7 @@ int32_t Rhombus(int x0, int y0, int size, int style);
 int32_t Six_Star(int x0, int y0, int size, int style);
 int32_t ForeStar(int x0, int y0, int size, int style);
 int32_t Cancle(int x0, int y0, int size, int style);
+int32_t StraightLine(int x0, int y0, int size, int style);
 //Pick color
 int32_t pickcolor(int x, int y);
 //barcket the latetst comment
@@ -58,13 +59,13 @@ int Setup() {
 	initWindow("CAD", DEFAULT, DEFAULT, 1024, 768);
 	//Deafult 1024*768 windows.
 	IO_Init();
-	registerTimerEvent(TimerEvent);
-	registerKeyboardEvent(KeyboardEvent);
-	registerCharEvent(CharEvent);
-	registerMouseEvent(MouseEvent);
+	registerTimerEvent(&TimerEvent);
+	registerKeyboardEvent(&KeyboardEvent);
+	registerCharEvent(&CharEvent);
+	registerMouseEvent(&MouseEvent);
 	return 0;
 }
-TimerEventCallback TimerEvent(int timerID) { ; }
+TimerEventCallback TimerEvent(int timerID) { return END_WITHOUT_ERROR; }
 CharEventCallback CharEvent(char c) {
 	static int32_t Pre_Pos_x, Pre_Pos_y;
 	//To read the num from keyborad.
@@ -97,7 +98,7 @@ CharEventCallback CharEvent(char c) {
 				num = num *  DEXMINAL + c - '0';
 			}
 			String Dynamic_Size;
-			sprintf(Dynamic_Size, "size = %d pixels", num);
+			sprintf_s(Dynamic_Size, STRING_LENGTH_MAX, "size = %d pixels", num);
 			paintText(0, 0, Dynamic_Size);
 			CAD_Msg.Size = num;
 			break;
@@ -106,7 +107,7 @@ CharEventCallback CharEvent(char c) {
 			if (isdigit(c)) {
 				num = num *DEXMINAL + c - '0';
 			}
-			sprintf(Dynamic_Size, "style = %d", num);
+			sprintf_s(Dynamic_Size, STRING_LENGTH_MAX, "style = %d", num);
 			paintText(0, 0, Dynamic_Size);
 			CAD_Msg.Style = num;
 			break;
@@ -128,10 +129,10 @@ CharEventCallback CharEvent(char c) {
 		Pre_Pos_y = m_Text_Postion_y;
 		beginPaint();
 		String Words_Temp;
-		sprintf(Words_Temp, "%c", c);
-		strcat(Words_string, Words_Temp);
+		sprintf_s(Words_Temp, STRING_LENGTH_MAX, "%c", c);
+		strcat_s(Words_string, STRING_LENGTH_MAX, Words_Temp);
 		paintText(m_Text_Postion_x, m_Text_Postion_y, Words_string);
-		int32_t strlength = strlen(Words_string);
+		int32_t strlength = (int32_t)strlen(Words_string);
 		setTextSize(TEXT_SIZE);
 		endPaint();
 	}
@@ -166,7 +167,7 @@ KeyboardEventCallback KeyboardEvent(int key, int event) {
 		setCaretPos(m_Text_Postion_x + String_Index * 16, m_Text_Postion_y + 15);
 		showCaret();
 	}
-
+	return 0;
 }
 MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 	//static int32_t  Click_Times = 0;
@@ -350,17 +351,6 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 	else if (x >COLORS_X_LEFT && x<COLORS_X_RIGHT && y>COLORS_Y_UP && y < COLORS_Y_DOWN && button == MOUSE_LEFT && event == CLICK) {
 		pickcolor( x,  y);
 	}
-	/*int32_t	Rgular_Triangle(int x0, int y0, int size, int style) { ; }
-	int32_t Right_Triangle(int x0, int y0, int size, int style) { ; }
-	int32_t Five_Star(int x0, int y0, int size, int style) { ; }
-	int32_t Up_Arrow(int x0, int y0, int size, int style) { ; }
-	int32_t DrawSquare(int x0, int y0, int size, int style) { ; }
-	int32_t DrawCurve(int x0, int y0, int size, int style) { ; }
-	int32_t DrawCircle(int x0, int y0, int size, int style) { ; }
-	int32_t Arc_Rectangle(int x0, int y0, int size, int style) { ; }
-	int32_t DrawPentagon(int x0, int y0, int size, int style) { ; }
-	int32_t DownArrow(int x0, int y0, int size, int style) { ; }
-	int32_t Hexagon(int x0, int y0, int size, int style) { ; }*/
 	if (0 != m_lMode && PressDown == 1)
 		//Beacuse we have varible PressDown we don't care the event and button.
 	{
@@ -421,6 +411,7 @@ MouseEventCallback MouseEvent(int x, int y, int button, int event) {
 			break;
 		}
 	}
+	return 0;
 }
 int32_t IO_Init() {
 	p_MsgHead = NewMsgQueue();
@@ -987,6 +978,7 @@ int32_t DrawCurve(int x0, int y0, int size, int style) {
 
 	Pre_x = x0;
 	Pre_y = y0;
+	return 0;
 }
 //Pick the color pixels
 int32_t pickcolor(int x, int y)

@@ -29,7 +29,10 @@
     <ClInclude Include="main.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="colors.h">
+    <ClInclude Include="ColorMoudule.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Functions.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
