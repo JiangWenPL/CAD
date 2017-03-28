@@ -1,3 +1,11 @@
+/*
+*    ColorMoudule.h
+*    C Project
+*	 Team production.
+*	 Team member: Jiang Wen, Huang Nianmei, Li Jianing.
+*    This file was created by Wen Jiang on 3/28 2017.
+*    Copyright (c) 2017 Wen Jiang,Huang Nianmei, Li Jianing. All rights reserved.
+*/
 #pragma once
 #ifndef COLORMODULE_H
 #define COLORMODULE_H

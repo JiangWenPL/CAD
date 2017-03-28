@@ -4,7 +4,7 @@
 *	 Team production.
 *	 Team member: Jiang Wen, Huang Nianmei, Li Jianing.
 *    This file was created by Wen Jiang on 3/14/2017.
-*    Copyright (c) 2017 Wen Jiang. All rights reserved.
+*    Copyright (c) 2017 Wen Jiang, Huang Nianmei, Li Jianing. All rights reserved.
 */
 #include"main.h"
 //typedef struct MSGQUEUE {

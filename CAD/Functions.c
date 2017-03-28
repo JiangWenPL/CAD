@@ -1,3 +1,11 @@
+/*
+*    Functions.c
+*    C Project
+*	 Team production.
+*	 Team member: Jiang Wen, Huang Nianmei, Li Jianing.
+*    This file was created by Wen Jiang on 3/28/2017.
+*    Copyright (c) 2017 Wen Jiang,Huang Nianmei, Li Jianing. All rights reserved.
+*/
 #include"Functions.h"
 int32_t Erase(int x0, int y0, int size, int style) {
 	static int32_t Alert_Flag = TRUE;
