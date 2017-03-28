@@ -1,6 +1,9 @@
 #pragma once
 #ifndef BUTTON_H
 #define BUTTON_H
+#include"main.h"
+
+
 //Panels position's Marco definaton.
 #define PEN_BUTTON_X_LEFT 0
 #define PEN_BUTTON_X_RIGHT 35

@@ -31,6 +31,14 @@ typedef struct MSGQUEUE {
 	struct MSGQUEUE *pNext;
 }MsgQueue;
 typedef char String[STRING_LENGTH_MAX];
+extern int32_t m_lMode;
+extern int32_t String_Index;
+extern char Words_string[100];
+extern int32_t m_Text_Postion_x;
+extern int32_t m_Text_Postion_y;
+extern ACL_Color m_CurrentColor;
+extern MsgQueue* p_MsgHead;
+extern MsgQueue CAD_Msg;
 int32_t IO_Init();
 int32_t Pen(int x0, int y0, int size, int style);
 int32_t DrawRectangle(int x0, int y0, int size, int style);

@@ -1,6 +1,8 @@
 #pragma once
 #ifndef COLORMODULE_H
 #define COLORMODULE_H
+#include"main.h"
+
 //Color Position defination
 #define COORDINATE_ORIGIN 0
 #define TOOLS_RIGHT_X 70

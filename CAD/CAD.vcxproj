@@ -140,6 +140,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="acllib.c" />
+    <ClCompile Include="ColorModule.c" />
+    <ClCompile Include="Functions.c" />
     <ClCompile Include="main.c" />
   </ItemGroup>
   <ItemGroup>

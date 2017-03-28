@@ -21,6 +21,12 @@
     <ClCompile Include="main.c">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="ColorModule.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Functions.c">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="acllib.h">
