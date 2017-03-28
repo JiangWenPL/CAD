@@ -254,6 +254,9 @@
 #define CT_BUTTON_X_RIGHT 1023
 #define CT_BUTTON_Y_DOWN 409
 #define CT_BUTTON_Y_UP 391
+#pragma warning(disable:4244)
+#pragma warning(disable:4047)
+#pragma warning(disable:4024)
 //Belowes are RGB color define
 #define AA  			RGB(0  ,0, 0)
 #define AB  			RGB(64 ,64,64)

@@ -14,9 +14,6 @@
 #include<stdio.h>
 #include"Functions.h"
 #include"ColorMoudule.h"
-#pragma warning(disable:4244)
-#pragma warning(disable:4047)
-#pragma warning(disable:4024)
 #define STRING_LENGTH_MAX 100
 /*Use typedefine to set our own type. WJ*/
 typedef int int32_t;
