@@ -150,6 +150,11 @@
     <ClInclude Include="ColorMoudule.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="ColorPalette.bmp" />
+    <Image Include="DashBoard.bmp" />
+    <Image Include="Pallet.bmp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

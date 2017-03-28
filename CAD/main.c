@@ -1,6 +1,6 @@
 /*
 *    main.c
-*    C Project
+*    CAD Project
 *	 Team production.
 *	 Team member: Jiang Wen, Huang Nianmei, Li Jianing.
 *    This file was created by Wen Jiang on 3/14/2017.

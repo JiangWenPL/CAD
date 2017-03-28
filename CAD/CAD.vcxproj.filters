@@ -42,4 +42,15 @@
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="ColorPalette.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="DashBoard.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="Pallet.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
 </Project>
